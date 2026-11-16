@@ -1,0 +1,44 @@
+data:
+  db_path: "data/tactical.sqlite"
+  start_date: "2014-01-01"
+  sleep_between: 0.15
+
+moex:
+  stocks:
+    engine: "stock"
+    market: "shares"
+    board: "TQBR"
+  # индексы и валюта/металлы с MOEX ISS
+  extra:
+    - { local: "IMOEX",       moex: "IMOEX",       engine: "stock",    market: "index", board: "SNDX", desc: "MOEX Index" }
+    - { local: "RGBI",        moex: "RGBI",        engine: "stock",    market: "index", board: "SNDX", desc: "RGBI" }
+    - { local: "CNYRUB_TOM",  moex: "CNYRUB_TOM",  engine: "currency", market: "selt",  board: "CETS", desc: "CNY/RUB" }
+    - { local: "GLDRUB_TOM",  moex: "GLDRUB_TOM",  engine: "currency", market: "selt",  board: "CETS", desc: "Gold RUB" }
+    - { local: "SLVRUB_TOM",  moex: "SLVRUB_TOM",  engine: "currency", market: "selt",  board: "CETS", desc: "Silver RUB" }
+
+yahoo:
+  # local -> (yahoo_ticker, description)
+  tickers:
+    - { local: "BTC",          yahoo: "BTC-USD", desc: "Bitcoin" }
+    - { local: "ETH",          yahoo: "ETH-USD", desc: "Ethereum" }
+    - { local: "SOL",          yahoo: "SOL-USD", desc: "Solana" }
+    - { local: "XRP",          yahoo: "XRP-USD", desc: "Ripple" }
+    - { local: "TRX",          yahoo: "TRX-USD", desc: "Tron" }
+    - { local: "BRENT",        yahoo: "BZ=F",    desc: "Brent crude" }
+    - { local: "WTI",          yahoo: "CL=F",    desc: "WTI crude" }
+    - { local: "HH_GAS",       yahoo: "NG=F",    desc: "Henry Hub gas" }
+    - { local: "TTF",          yahoo: "TTF=F",   desc: "TTF gas" }
+    - { local: "COPPER",       yahoo: "HG=F",    desc: "Copper" }
+    - { local: "GOLD",         yahoo: "GC=F",    desc: "Gold USD" }
+    - { local: "SILVER",       yahoo: "SI=F",    desc: "Silver USD" }
+    - { local: "COCOA",        yahoo: "CC=F",    desc: "Cocoa" }
+    - { local: "COFFEE",       yahoo: "KC=F",    desc: "Coffee" }
+    - { local: "ORANGE_JUICE", yahoo: "OJ=F",    desc: "Orange juice" }
+    - { local: "NASDAQ100",    yahoo: "^NDX",    desc: "Nasdaq 100" }
+
+regime:
+  ema_period: 100
+
+universe:
+  top100_window: 60   # сумма value за N торговых дней
+  top_n: 100

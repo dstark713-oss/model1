@@ -1,0 +1,7 @@
+wf:
+  pretrain_years: 3
+  retrain_months: 6
+  purge_days: 10
+  window: "expanding"      # "expanding" | "rolling"
+  rolling_years: 3         # если window: rolling
+  test_months: 6           # длина тестового блока = до следующего retrain

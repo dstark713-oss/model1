@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Данные (не коммитим — большие и локальные)
+data/
+*.sqlite
+*.sqlite-journal
+dataset/
+
+# Артефакты прогонов (воспроизводимы, но не в git)
+artifacts/
+
+# Модели (бинарники CatBoost, калибраторы)
+artifacts/models/
+*.cbm
+*.pkl
+
+# Логи
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Секреты
+.env
+.env.*
+configs/agent.local.yaml

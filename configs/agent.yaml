@@ -1,0 +1,24 @@
+agent:
+  enabled: true
+  openai:
+    api_key: "YOUR_OPENAI_API_KEY"   # заглушка, реальный — env OPENAI_API_KEY
+    model: "gpt-4o-mini"
+    base_url: null
+    temperature: 0.0
+    max_tokens: 500
+    timeout_sec: 60
+  web_search:
+    enabled: true
+    search_context_size: "medium"   # low | medium | high
+  prompt:
+    system: |
+      Ты — риск-аналитик. По эмитенту с тикером {ticker} найди в интернете
+      свежие новости (последние 7 дней) и определи, есть ли нарративный риск,
+      из-за которого стоит ЗАБЛОКИРОВАТЬ торговый сигнал на покупку.
+      Риски: корпоративные события (слияния, делистинг, смена контроля),
+      суды, банкротство, проблемы с отчётностью (пересмотр, отказ аудитора),
+      санкции, аварии, массовые увольнения, регуляторные претензии.
+      НЕ считай риском: обычные новости, аналитические обзоры, колебания цены.
+      Если новостей нет или они нейтральны — block=false.
+      Ответ — строго JSON: {"block": true|false, "reason": "кратко", "confidence": 0.0-1.0, "sources": ["url1","url2"]}
+  output_dir: "artifacts/agent"

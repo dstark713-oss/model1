@@ -1,0 +1,5 @@
+backtest:
+  initial_capital: 1_000_000
+  costs:
+    entry_bps: 3
+    exit_bps: 3

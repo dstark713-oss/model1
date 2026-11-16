@@ -1,0 +1,5 @@
+targets:
+  h: 5
+  k_tp: 1.5
+  k_sl: 1.0
+  vol_window: 20
