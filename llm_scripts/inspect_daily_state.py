@@ -26,7 +26,7 @@ def section(title: str) -> None:
     print("=" * 88)
 
 
-def inspect_json_files(target_date: str) -> None:
+def inspect_json_files(target_date: str, signal_date: str | None) -> None:
     section("SIGNAL / AGENT JSON")
     for folder in (ROOT / "artifacts" / "signals", ROOT / "artifacts" / "agent",
                    ROOT / "artifacts" / "live"):
@@ -40,8 +40,11 @@ def inspect_json_files(target_date: str) -> None:
             continue
         for path in files[-10:]:
             print(f"  {path.name} ({path.stat().st_size} bytes)")
-        candidates = [folder / f"signal_{target_date}.json",
-                      folder / f"agent_{target_date}.json"]
+        dates = list(dict.fromkeys([d for d in (signal_date, target_date) if d]))
+        candidates = []
+        for date in dates:
+            candidates.extend([folder / f"signal_{date}.json",
+                               folder / f"agent_{date}.json"])
         for path in candidates:
             if path.exists():
                 try:
@@ -137,10 +140,14 @@ def inspect_sqlite(target_date: str) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", default="2026-11-18")
+    parser.add_argument("--date", default="2026-11-18",
+                        help="portfolio performance date")
+    parser.add_argument("--signal-date", default="2026-11-17",
+                        help="signal intended for the performance date")
     args = parser.parse_args()
-    print(f"MODEL1 DAILY STATE INSPECTION | target_date={args.date} | READ ONLY")
-    inspect_json_files(args.date)
+    print(f"MODEL1 DAILY STATE INSPECTION | target_date={args.date} | "
+          f"signal_date={args.signal_date} | READ ONLY")
+    inspect_json_files(args.date, args.signal_date)
     inspect_parquet(args.date)
     inspect_sqlite(args.date)
 
